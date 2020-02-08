@@ -1,8 +1,10 @@
 package com.bigguy.spring.controller;
 
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.bigguy.spring.entity.LoginInfo;
+import com.bigguy.spring.service.UserLoginService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,25 +14,28 @@ import org.springframework.web.bind.annotation.RestController;
  * @Date 2020/2/8
  **/
 @RestController
+@Slf4j
 public class LoginController {
 
-    private Log logger = LogFactory.getLog(LoginController.class);
+    @Autowired
+    private UserLoginService loginService;
 
     @GetMapping("healthCheck")
     public String healthCheck(){
-        logger.info("healthCheck...");
+        log.info("healthCheck...");
         return "ok";
     }
 
     @GetMapping("/login")
-    public String login(){
-        logger.info("login...");
+    public String login(LoginInfo loginInfo){
+
+        log.info("login...");
         return null;
     }
 
     @GetMapping("/logout")
     public String loginout(){
-        logger.info("loginout...");
+        log.info("loginout...");
         return null;
     }
 

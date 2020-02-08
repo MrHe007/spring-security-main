@@ -1,6 +1,7 @@
 package com.bigguy.spring.config;
 
 import com.bigguy.spring.filter.EncodingFilter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.ServletException;
  * @Author bigguy
  * @Date 2020/2/8
  **/
+@Slf4j
 public class WebInit extends AbstractAnnotationConfigDispatcherServletInitializer {
     
     /**

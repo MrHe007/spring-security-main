@@ -1,6 +1,8 @@
 package com.bigguy.spring.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -10,6 +12,8 @@ import lombok.Setter;
  **/
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class LoginInfo {
     private String name;
     private String password;
