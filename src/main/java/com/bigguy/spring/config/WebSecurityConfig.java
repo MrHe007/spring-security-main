@@ -26,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserStaticDataService userStaticDataService;
 
-    @Bean
+//    @Bean   // 自定义 UserDetails 后去掉
     @Override
     public UserDetailsService userDetailsServiceBean() throws Exception {
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
