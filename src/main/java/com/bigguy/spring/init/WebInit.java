@@ -1,5 +1,8 @@
-package com.bigguy.spring.config;
+package com.bigguy.spring.init;
 
+import com.bigguy.spring.config.AppConfig;
+import com.bigguy.spring.config.WebMvcConfig;
+import com.bigguy.spring.config.WebSecurityConfig;
 import com.bigguy.spring.filter.EncodingFilter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -22,7 +25,7 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
      **/
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{AppConfig.class};
+        return new Class[]{AppConfig.class, WebSecurityConfig.class};
     }
 
     /**

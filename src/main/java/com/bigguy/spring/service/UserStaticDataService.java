@@ -4,10 +4,7 @@ import com.bigguy.spring.entity.LoginInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @Description: 模拟数据库资源
@@ -31,6 +28,7 @@ public class UserStaticDataService {
     public UserStaticDataService(){
 
         initUserMapData();
+        initUserAuthoritiesMap();
 
     }
 
@@ -39,21 +37,23 @@ public class UserStaticDataService {
             userMap = new HashMap<>(16);
         }
         userMap.put("jeck", new LoginInfo("jeck", "jeck123"));
-        userMap.put("jeck", new LoginInfo("admin", "admin123"));
-        userMap.put("jeck", new LoginInfo("tom", "tom123"));
+        userMap.put("admin", new LoginInfo("admin", "admin123"));
+        userMap.put("tom", new LoginInfo("tom", "tom123"));
     }
 
     private static void initUserAuthoritiesMap(){
+        if(userAuthoritiesMap == null){
+            userAuthoritiesMap = new HashMap<>(16);
+        }
         Set<String> jeckAuthorities = new HashSet<>(4);
         Set<String> tomAuthorities = new HashSet<>(4);
-        jeckAuthorities.add("/user/login");
-        jeckAuthorities.add("/user/logout");
-        jeckAuthorities.add("/user/findList");
+        jeckAuthorities.add("user:list");
+        jeckAuthorities.add("user:get");
 
-        tomAuthorities.add("/user/login");
-        tomAuthorities.add("/user/logout");
-        tomAuthorities.add("/user/findList");
-        tomAuthorities.add("/user/updateUser");
+        tomAuthorities.add("user:list");
+        tomAuthorities.add("user:get");
+        tomAuthorities.add("user:delete");
+        tomAuthorities.add("user:update");
 
         userAuthoritiesMap.put("jeck", jeckAuthorities);
         userAuthoritiesMap.put("tom", tomAuthorities);
@@ -67,5 +67,13 @@ public class UserStaticDataService {
         return userAuthoritiesMap.get(username);
     }
 
+    /**
+     * 获取所有用户
+     * @return
+     */
+    public List<LoginInfo> findUsers(){
+        ArrayList<LoginInfo> loginInfos = new ArrayList<>(userMap.values());
+        return loginInfos;
+    }
 
 }

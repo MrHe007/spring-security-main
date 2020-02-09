@@ -1,6 +1,5 @@
 package com.bigguy.spring.config;
 
-import com.bigguy.spring.interceptor.LoginInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -34,14 +33,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginInterceptor()).
-                addPathPatterns("/**").
-                excludePathPatterns("/static/login.html","/static/js/**","/userLogin");
+//        registry.addInterceptor(new LoginInterceptor()).
+//                addPathPatterns("/**").
+//                excludePathPatterns("/static/login.html","/static/js/**","/userLogin");
     }
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("login");
+        registry.addViewController("/").setViewName("redirect:/login");
     }
 
     /**
@@ -61,10 +60,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
      * 配置默认的视图解析器
      * 现在先不配置
      */
-//    @Bean
+    @Bean
     public InternalResourceViewResolver viewResolver(){
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("/WEB-INF/jsp/");
+        viewResolver.setPrefix("/WEB-INF/view/");
         viewResolver.setSuffix(".jsp");
         //如果页面需要使用JSTL标签库
         //viewResolver.setViewClass(JstlView.class);

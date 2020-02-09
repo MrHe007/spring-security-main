@@ -13,25 +13,32 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class UserController {
 
-    @GetMapping("/")
+    @GetMapping("/list")
     public Object findUserList(){
+        log.info("user/list");
 
-
-        return null;
+        return "user/list";
     }
 
-    @GetMapping("/{id}")
-    public Object findUser(@PathVariable("id") Integer id){
-
-
-        return null;
+    @GetMapping("/delete")
+    public Object delUser( Integer id){
+        log.info("user/delete");
+        return "/user/delete";
     }
 
-    @GetMapping("/del/{id}")
-    public Object delUser(@PathVariable("id") Integer id){
-
-
-        return null;
+    @GetMapping("/update")
+    public Object updateUser( Integer id){
+        log.info("user/update");
+        return "user:delete";
     }
+
+    @GetMapping("/get")
+    public Object findUser( Integer id){
+        log.info("/user/get");
+
+        return "user:get";
+    }
+
+
 
 }
