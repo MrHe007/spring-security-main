@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @Description:
  * @Author bigguy
@@ -20,17 +22,14 @@ public class LoginController {
     @Autowired
     private UserLoginService loginService;
 
-    @GetMapping("healthCheck")
-    public String healthCheck(){
-        log.info("healthCheck...");
-        return "ok";
-    }
 
     @GetMapping("/login")
-    public String login(LoginInfo loginInfo){
-
+    public String login(HttpServletRequest request, LoginInfo loginInfo){
         log.info("login...");
-        return null;
+
+        loginService.login(request, loginInfo);
+
+        return "login success...";
     }
 
     @GetMapping("/logout")

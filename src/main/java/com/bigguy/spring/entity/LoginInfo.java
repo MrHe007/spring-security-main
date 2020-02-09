@@ -1,9 +1,10 @@
 package com.bigguy.spring.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Set;
 
 /**
  * @Description:
@@ -12,10 +13,22 @@ import lombok.Setter;
  **/
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class LoginInfo {
+
+    public static final String SESSION_KEY = "_user";
+
     private String name;
     private String password;
+
+    public LoginInfo(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
+    /**
+     * 运行被访问的权限
+     */
+    private Set<String> authorities;
 
 }
